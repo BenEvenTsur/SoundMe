@@ -1,0 +1,15 @@
+<h4 class = "listTitle">{{ title }}</h4>
+<div class="list-group">
+  <a 
+  *ngFor="let song of getSongList(title);"
+  [id] = song.id
+  href="#" class="list-group-item waves-effect songDesign"><h5>{{ song.name }}</h5>
+  <p class="descDesign">{{ song.description }}</p>
+</a>
+</div>
+<div class="buttonLocation">
+    <button type="button" class="btn btn-primary button">{{ getButtonName() }}</button>
+</div>
+<hr>
+
+<!-- <a href="#" class="list-group-item active waves-light">Cras justo odio</a> -->

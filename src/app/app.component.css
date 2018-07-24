@@ -1,0 +1,9 @@
+.mainAppPart{
+    padding: 0;
+}
+
+#listsContainer{
+    height: 100vh;
+    margin: auto;
+    border: 1px solid #dfdfdf;
+}

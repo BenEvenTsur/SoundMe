@@ -1,0 +1,29 @@
+.descDesign{
+    color: black;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.songDesign{
+    padding: 5px;
+    margin: 0;
+    padding-left: 10px;
+}
+
+.list-group
+{
+    max-height: 340px;
+    overflow: auto;
+    margin-bottom: 20px;
+}
+
+.buttonLocation{
+    margin: auto;
+    width: 50%;
+}
+
+.listTitle{
+    margin: auto;
+    padding-bottom: 6px;
+    width: 50%;
+}

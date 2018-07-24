@@ -1,0 +1,17 @@
+.editorPart{
+    border: 2px solid #dfdfdf;
+    padding-left: 10px;
+}
+
+#songTitle{
+    height: 10vh;
+}
+
+#songText{
+    width: 100%;
+    height: 70vh;
+}
+
+#songComments{
+    height: 20vh;
+}
