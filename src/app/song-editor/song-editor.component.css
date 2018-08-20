@@ -1,6 +1,11 @@
+body{
+  position: relative;
+}
+
 .editorPart{
     border: 2px solid #dfdfdf;
     padding-left: 10px;
+
 }
 
 #songTitle{
@@ -14,4 +19,10 @@
 
 #songComments{
     height: 20vh;
+}
+
+app-main-button{
+  position: absolute;
+  bottom: 220px;
+  right: 20px;
 }

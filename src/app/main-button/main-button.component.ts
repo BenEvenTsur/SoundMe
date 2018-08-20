@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-button.component.css']
 })
 export class MainButtonComponent implements OnInit {
-  buttonDisplay = false;
+  buttonDisplay = true;
 
   hideButtons()  {
     this.buttonDisplay = !this.buttonDisplay;
