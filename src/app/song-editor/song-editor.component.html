@@ -4,7 +4,8 @@
 </div>
 <textarea id="songText" class = "editorPart" disabled>{{getChordsAndLyrics()}}</textarea>
 
-<app-main-button></app-main-button>
+<app-transpose [hidden]="transDisp"></app-transpose>
+<app-main-button (transDispalyEvent)="changeTransDisplay()"></app-main-button>
 
 <div id="songComments" class = "editorPart">
     <b>Comments:</b><p>{{ comments }}</p>

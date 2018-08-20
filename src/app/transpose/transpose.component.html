@@ -1,0 +1,13 @@
+<div id="mainDiv">
+  <p id="toneScale"><b>Current tone:</b>&nbsp;
+    <select id="toneScaleSelect" [(ngModel)]="tone">
+      <option  *ngFor="let ton of tones" value={{ton}}>{{ton}}</option>
+    </select>
+  </p>
+  <p id="tonePresent" [innerHTML]="tone"></p>
+  <p id="buttons">
+    <fa-icon [icon]="faPlusSquare" (click)="pluseTone()"></fa-icon>
+    <fa-icon [icon]="faMinusSquare" (click)="minusTone()"></fa-icon>
+  </p>
+
+</div>

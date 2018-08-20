@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-main-button',
@@ -6,11 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./main-button.component.css']
 })
 export class MainButtonComponent implements OnInit {
-  buttonDisplay = true;
+buttonDisplay = true;
+@Output() transDispalyEvent = new EventEmitter<boolean>();
 
-  hideButtons()  {
+  hideButtons() {
     this.buttonDisplay = !this.buttonDisplay;
   }
+
+  changeTransDisplay() {
+    this.transDispalyEvent.emit(true);
+  }
+
   constructor() { }
 
   ngOnInit() {

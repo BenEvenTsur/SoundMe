@@ -13,51 +13,47 @@ export class SongEditorComponent implements OnInit {
   comments: string;
   songChords: string;
   songLyrics: string;
+  transDisp = true;
 
-  getSongName(){
-    var songNameToReturn = this.songName;
-
-    if (this.songPerformer != null)
-    {
-      songNameToReturn += (" - " + this.songPerformer);
+  changeTransDisplay() {
+    this.transDisp = !this.transDisp;
+  }
+  getSongName() {
+    let songNameToReturn = this.songName;
+    if (this.songPerformer != null) {
+      songNameToReturn += (' - ' + this.songPerformer);
     }
 
     return songNameToReturn;
   }
-  getSongDetails()
-  {
-    var songDetailsToReturn = "";
 
-    if (this.songComposser != null && this.songComposser == this.songWriter)
-    {
-      songDetailsToReturn = "Wrote and composed by " + this.songComposser;
-    }
-    else
-    {
-      if(this.songWriter != null)
-      {
-        songDetailsToReturn += ("Wrote by " + this.songWriter + " ,");
+  getSongDetails()  {
+    let songDetailsToReturn = '';
+
+    if (this.songComposser != null && this.songComposser === this.songWriter) {
+      songDetailsToReturn = 'Wrote and composed by ' + this.songComposser;
+    } else {
+      if (this.songWriter != null) {
+        songDetailsToReturn += ('Wrote by ' + this.songWriter + ' ,');
       }
-      if(this.songComposser != null)
-      {
-        songDetailsToReturn += ("Composed by " + this.songComposser);
+      if (this.songComposser != null) {
+        songDetailsToReturn += ('Composed by ' + this.songComposser);
       }
     }
 
     return songDetailsToReturn;
   }
-  getChordsAndLyrics()
-  {
+  getChordsAndLyrics()  {
     return this.songLyrics + '\n' + this.songChords;
   }
 
   constructor() {
-    this.songName = "BlackBird";
-    this.songWriter = "John Lennon and Paul McCartney";
-    this.songComposser = "John Lennon and Paul McCartney";
-    this.songPerformer = "The Beatles";
-    this.comments = "Original tone G.";
-    this.songChords = "";
+    this.songName = 'BlackBird';
+    this.songWriter = 'John Lennon and Paul McCartney';
+    this.songComposser = 'John Lennon and Paul McCartney';
+    this.songPerformer = 'The Beatles';
+    this.comments = 'Original tone G.';
+    this.songChords = '';
     this.songLyrics = `  G       Am7            G/B     G
 Blackbird singing in the dead of night
 C C#dim D D/Eb Em Em/Eb

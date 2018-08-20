@@ -26,3 +26,9 @@ app-main-button{
   bottom: 220px;
   right: 20px;
 }
+
+app-transpose{
+  position: absolute;
+  top: 120px;
+  right: 20px;
+}
