@@ -1,13 +1,13 @@
 <div id="mainDiv">
   <p id="toneScale"><b>Current tone:</b>&nbsp;
-    <select id="toneScaleSelect" [(ngModel)]="tone">
+    <select id="toneScaleSelect" [(ngModel)]="tone" (ngModelChange)="transposeChords()">
       <option  *ngFor="let ton of tones" value={{ton}}>{{ton}}</option>
     </select>
   </p>
   <p id="tonePresent" [innerHTML]="tone"></p>
   <p id="buttons">
-    <fa-icon [icon]="faPlusSquare" (click)="changeTone(true)"></fa-icon>
-    <fa-icon [icon]="faMinusSquare" (click)="changeTone(false)"></fa-icon>
+    <fa-icon [icon]="faPlusSquare" (click)="pluseOrMinus(1)"></fa-icon>
+    <fa-icon [icon]="faMinusSquare" (click)="pluseOrMinus(-1)"></fa-icon>
   </p>
 
 </div>
