@@ -6,8 +6,9 @@
   </p>
   <p id="tonePresent" [innerHTML]="tone"></p>
   <p id="buttons">
-    <fa-icon [icon]="faPlusSquare" (click)="pluseTone()"></fa-icon>
-    <fa-icon [icon]="faMinusSquare" (click)="minusTone()"></fa-icon>
+    <fa-icon [icon]="faPlusSquare" (click)="changeTone(true)"></fa-icon>
+    <fa-icon [icon]="faMinusSquare" (click)="changeTone(false)"></fa-icon>
+    {{chordsAndLyrics}}
   </p>
 
 </div>
