@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { faMinusSquare, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { disableDebugTools } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-transpose',
@@ -11,11 +12,12 @@ export class TransposeComponent implements OnInit {
   tones = ['A', 'Bb', 'B', 'C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab'];
   faMinusSquare = faMinusSquare;
   faPlusSquare = faPlusSquare;
-  tone = 'A';// this.findTone();
+  tone ='A';
 
   changeTone(isPluse: boolean) {
     let i, offset = 1;
-
+    console.log("1");
+    debugger;
     if (isPluse) {
       offset += 10;
     }
@@ -30,6 +32,7 @@ export class TransposeComponent implements OnInit {
 
   findTone(): string {
     let i, chord, tone;
+    debugger;
 
     for(i = 0; i < this.chordsAndLyrics.length; ++i)
     {
@@ -44,13 +47,13 @@ export class TransposeComponent implements OnInit {
           else
           {
             if(chord[1] == 'm') {
-              tone = this.getMajor(chord.subString(1));
+              tone = this.getMajor(chord.substring(1));
             }
             else if(chord[2] == 'm') {
-              tone = this.getMajor(chord.subString(2));
+              tone = this.getMajor(chord.substring(2));
             }
             else {
-              tone = chord.subString(1);
+              tone = chord.substring(1);
             }
           }
         }
@@ -82,20 +85,21 @@ export class TransposeComponent implements OnInit {
   }
 
   getChord(i) {
+    debugger;
     let startIndex = i, endIndex = i, chord;
 
     while(this.chordsAndLyrics[endIndex] != ' ') {
       ++endIndex;
     }
 
-    chord = this.chordsAndLyrics.subString(startIndex, endIndex);
+    chord = this.chordsAndLyrics.substring(startIndex, endIndex);
     if(chord[0] == 'A' || chord[0] == 'B' || chord[0] == 'C' || chord[0] == 'D' || chord[0] == 'E' || chord[0] == 'F' || chord[0] == 'G') {
       switch(chord[1]) {
         case 'm':
           break;
         case 'b':
           if(chord[0] == 'A' || chord[0] == 'B' || chord[0] == 'D' || chord[0] == 'E' || chord[0] == 'G') {
-            if(this.isHarmony(chord.subString(2))) {
+            if(this.isHarmony(chord.substring(2))) {
               break;
             }
             else {
@@ -107,7 +111,7 @@ export class TransposeComponent implements OnInit {
           }
         case '#':
           if(chord[0] == 'A' || chord[0] == 'C' || chord[0] == 'D' || chord[0] == 'F' || chord[0] == 'G') {
-            if(this.isHarmony(chord.subString(2))) {
+            if(this.isHarmony(chord.substring(2))) {
               break;
             }
             else {
@@ -118,12 +122,12 @@ export class TransposeComponent implements OnInit {
             chord = null;
           }
         default:
-        if(this.isHarmony(chord.subString(1))) {
+          if(this.isHarmony(chord.substring(1))) {
           break;
-        }
-        else {
-          chord = null
-        }
+          }
+          else {
+            chord = null
+          }
       }
     }
 
@@ -131,8 +135,8 @@ export class TransposeComponent implements OnInit {
   }
 
   isHarmony(harmony) {
-    if(harmony.subString(0, 3) == 'sus' || harmony.subString(0, 3) == 'aug' || harmony.subString(0, 3) == 'add' || harmony.subString(0, 3) == 'maj' ||
-      harmony.subString(0, 1) == 'M' || harmony.subString(0, 1) == '/' || !isNaN(parseInt(harmony[0], 10))) {
+    if(harmony.substring(0, 3) == 'sus' || harmony.substring(0, 3) == 'aug' || harmony.substring(0, 3) == 'add' || harmony.substring(0, 3) == 'maj' ||
+      harmony.substring(0, 1) == 'M' || harmony.substring(0, 1) == '/' || !isNaN(parseInt(harmony[0], 10))) {
         return true;
       }
     else {
@@ -140,7 +144,8 @@ export class TransposeComponent implements OnInit {
     }
   }
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit() {
   }
