@@ -1,14 +1,22 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
+// @Injectable()
+// export class ConfigService {
+//   constructor(private http: HttpClient) { }
+// }
 
 @Component({
   selector: 'app-song-list',
   templateUrl: './song-list.component.html',
   styleUrls: ['./song-list.component.css']
 })
+
+@Injectable()
 export class SongListComponent implements OnInit {
    @Input() title: string;
-
+   userid: number = 1;
    getButtonName()
    {
      var nameToReturn;
@@ -28,6 +36,9 @@ export class SongListComponent implements OnInit {
    getSongList(listName)
    {
      var listToReturn = [];
+
+     var x = this.http.get("http://localhost:63162/user/getmysongs/" + this.userid).subscribe((data)=>{ console.log("test")} );
+
      switch(listName)
      {
        case "My Songs":
@@ -75,8 +86,7 @@ export class SongListComponent implements OnInit {
      return listToReturn;
    }
 
-  constructor() {
-
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit() {
