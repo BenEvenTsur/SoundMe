@@ -18,6 +18,11 @@ export class SongEditorComponent implements OnInit {
   changeTransDisplay() {
     this.transDisp = !this.transDisp;
   }
+
+  lyrcisChange(newChords) {
+    this.songLyrics = newChords;
+}
+
   getSongName() {
     let songNameToReturn = this.songName;
     if (this.songPerformer != null) {

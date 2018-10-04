@@ -1,6 +1,6 @@
 <div id="mainDiv">
   <p id="toneScale"><b>Current tone:</b>&nbsp;
-    <select id="toneScaleSelect" [(ngModel)]="tone" (ngModelChange)="transposeChords()">
+    <select id="toneScaleSelect" [(ngModel)]="tone" (ngModelChange)="toneValueChange()">
       <option  *ngFor="let ton of tones" value={{ton}}>{{ton}}</option>
     </select>
   </p>
