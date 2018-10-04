@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, Directive } from '@angular/core';
+import {SongEditorComponent} from './song-editor/song-editor.component';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  chossenSong = null;
+
+  songsChoosed(event) {
+    this.child.songIsChoosed(event);
+  }
+
+  @ViewChild('child')
+  private child: SongEditorComponent;
 }

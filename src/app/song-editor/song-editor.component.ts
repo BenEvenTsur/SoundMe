@@ -1,10 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit  ,Input} from '@angular/core';
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+
 
 @Component({
   selector: 'app-song-editor',
   templateUrl: './song-editor.component.html',
   styleUrls: ['./song-editor.component.css']
 })
+
+@Injectable()
 export class SongEditorComponent implements OnInit {
   songName: string;
   songWriter: string;
@@ -14,6 +19,15 @@ export class SongEditorComponent implements OnInit {
   songChords: string;
   songLyrics: string;
   transDisp = true;
+
+  songIsChoosed(song) {
+    this.songName = song.name;
+    this.songLyrics = song.lyrics;
+    this.comments = song.comments;
+    this.http.get("http://localhost:63162/song/getsongbyid/" + song.id).subscribe((data: any[])=>{
+      debugger;
+     } );
+  }
 
   changeTransDisplay() {
     this.transDisp = !this.transDisp;
@@ -52,7 +66,7 @@ export class SongEditorComponent implements OnInit {
     return this.songLyrics + '\n' + this.songChords;
   }
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.songName = 'BlackBird';
     this.songWriter = 'John Lennon and Paul McCartney';
     this.songComposser = 'John Lennon and Paul McCartney';
@@ -79,9 +93,11 @@ you were only waiting for this moment to be free
 
 F C/E Dm C Bb C F C/E Dm C Bb A7
 Blackbird fly, Blackbird fly`;
+
 }
 
   ngOnInit() {
+
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input ,EventEmitter, Output} from '@angular/core';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -15,8 +15,27 @@ import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class SongListComponent implements OnInit {
+  @Output() songsChoosedEvent = new EventEmitter<{name:string, id: number, lyrics: string, comments: string}>();
    @Input() title: string;
-   userid: number = 1;
+   userid: number = 2;
+   mysongs: Array<{name:string, id: number, lyrics: string, comments: string}> = new Array();
+   sharedsongs: Array<{name:string, id: number, lyrics: string, comments: string}> = new Array();
+
+   changeSongsChoosed(song) {
+    this.songsChoosedEvent.emit(song);
+  }
+
+  getList(listName) {
+
+    switch(this.title)
+    {
+      case "My Songs":
+        return this.mysongs;
+      case "Shared Songs":
+        return this.sharedsongs;
+    }
+  }
+
    getButtonName()
    {
      var nameToReturn;
@@ -33,60 +52,27 @@ export class SongListComponent implements OnInit {
     return nameToReturn;
    }
 
-   getSongList(listName)
+   loadLists()
    {
-     var listToReturn = [];
+    this.http.get("http://localhost:63162/user/getmysongs/" + this.userid).subscribe((data: any[])=>{
+      for(var i = 0; i < data.length; ++i)
+      {
 
-     var x = this.http.get("http://localhost:63162/user/getmysongs/" + this.userid).subscribe((data)=>{ console.log("test")} );
+        this.mysongs.push({name: data[i].Name, id: data[i].ID, lyrics: data[i].Lyrics, comments: data[i].Comments});
+      }
+     } );
 
-     switch(listName)
-     {
-       case "My Songs":
-         listToReturn = 
-         [
-           {name: "song 1", id: "song1", description: "description of song 1"},
-           {name: "song 2", id: "song2", description: "description of song 2"},
-           {name: "song 3", id: "song3", description: "description of song 3"},
-           {name: "song 4", id: "song4", description: "description of song 4"},
-           {name: "song 5", id: "song5", description: "description of song 5"},
-           {name: "song 1", id: "song1", description: "description of song 1"},
-           {name: "song 2", id: "song2", description: "description of song 2"},
-           {name: "song 3", id: "song3", description: "description of song 3"},
-           {name: "song 4", id: "song4", description: "description of song 4"},
-           {name: "song 5", id: "song5", description: "description of song 5"},
-           {name: "song 1", id: "song1", description: "description of song 1"},
-           {name: "song 2", id: "song2", description: "description of song 2"},
-           {name: "song 3", id: "song3", description: "description of song 3"},
-           {name: "song 4", id: "song4", description: "description of song 4"},
-           {name: "song 5", id: "song5", description: "description of song 5"}
-         ];
-         break;
-        case "Shared Songs":
-         listToReturn = 
-         [
-          {name: "song 1", id: "song1", description: "description of song 1"},
-          {name: "song 2", id: "song2", description: "description of song 2"},
-          {name: "song 3", id: "song3", description: "description of song 3"},
-          {name: "song 4", id: "song4", description: "description of song 4"},
-          {name: "song 5", id: "song5", description: "description of song 5"},
-          {name: "song 1", id: "song1", description: "description of song 1"},
-          {name: "song 2", id: "song2", description: "description of song 2"},
-          {name: "song 3", id: "song3", description: "description of song 3"},
-          {name: "song 4", id: "song4", description: "description of song 4"},
-          {name: "song 5", id: "song5", description: "description of song 5"},
-          {name: "song 1", id: "song1", description: "description of song 1"},
-          {name: "song 2", id: "song2", description: "description of song 2"},
-          {name: "song 3", id: "song3", description: "description of song 3"},
-          {name: "song 4", id: "song4", description: "description of song 4"},
-          {name: "song 5", id: "song5", description: "description of song 5"}
-        ];
-         break;
-     }
- 
-     return listToReturn;
+     this.http.get("http://localhost:63162/user/getsharedsongs/" + this.userid).subscribe((data: any[])=>{
+      for(var i = 0; i < data.length; ++i)
+      {
+        this.sharedsongs.push({name: data[i].Name, id: data[i].ID, lyrics: data[i].Lyrics, comments: data[i].Comments});
+      }
+     } );
    }
 
   constructor(private http: HttpClient) {
+    //this.mysong = this.getSongList("My Songs");
+    this.loadLists();
   }
 
   ngOnInit() {

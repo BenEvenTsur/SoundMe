@@ -1,8 +1,9 @@
 <h4 class = "listTitle">{{ title }}</h4>
 <div class="list-group">
   <a 
-  *ngFor="let song of getSongList(title);"
+  *ngFor="let song of getList(title);"
   [id] = song.id
+  (click) = "changeSongsChoosed(song)"
   href="#" class="list-group-item waves-effect songDesign"><h5>{{ song.name }}</h5>
   <p class="descDesign">{{ song.description }}</p>
 </a>
